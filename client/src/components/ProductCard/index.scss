@@ -1,0 +1,55 @@
+.product-card {
+    width: 100%;
+    cursor: pointer;
+    
+    .image {
+        max-width: 100%;
+        border-bottom: 3px solid red;
+        position: relative;
+        overflow: hidden;
+        transition: 0.7s;
+
+        i {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            display: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        button {
+            width: 100%;
+            height: 50px;
+            background-color: red;
+            color: #fff;
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            border: none;
+            font-size: 24px;
+        }
+    }
+
+    .image:hover {
+        i {
+            display: block !important;
+        }
+
+        button {
+            bottom: 0 !important;
+        }
+    }   
+
+    h3 {
+        margin: 20px 0;
+    }
+
+    span {
+        color: red;
+        font-weight: 600;
+    }
+}

@@ -1,0 +1,47 @@
+footer {
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    .footer-main-container {
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+
+        .image {
+            gap: 0px !important;
+
+            img {
+                width: 140px;
+            }
+    
+            .asorem {
+                width: 300px;
+                margin-top: 20px;
+            }
+        }
+
+        ul {
+            p {
+                color: #777777;
+                margin-top: 15px;
+            }
+
+            h4 {
+                font-size: 18px;
+                color: #000;
+            }
+        }
+    }
+}
+
+@media (min-width: 300px) and (max-width: 600px) {
+    .footer-main-container {
+        width: 90% !important;
+        margin-left: auto;
+        margin-right: auto;
+        flex-direction: column;
+        gap: 30px;
+    }
+}

@@ -1,0 +1,45 @@
+.arrivals-main {
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 80px;
+    padding-bottom: 60px;
+
+
+    h1 {
+        font-size: 48px;
+    }
+
+    .arrival-main-container {
+        width: 100%;  
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-top: 50px;
+
+        .arrival-card {
+            width: 280px;
+            text-align: center;
+            h3 {
+                font-size: 24px;
+                margin-top: 20px;
+                margin-bottom: 15px;
+            }
+
+            span {
+                color: red;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+@media (min-width: 300px) and (max-width: 600px) {
+    .arrivals-main {
+
+        h1 {
+            font-size: 28px;
+        }
+        width: 90%;
+    }
+}

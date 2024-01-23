@@ -1,0 +1,45 @@
+.detail {
+    width: 100%;
+    padding: 100px;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+
+    img {
+        width: 500px;
+        height: 500px;
+    }
+
+    .detail-text {
+        h2 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        span {
+            font-size: 22px;
+        }
+
+        .add {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+
+            button {
+                width: 140px;
+                height: 40px;
+                background-color: #000;
+                color: #fff;
+                font-weight: 600;
+                border: none;
+            }
+
+            button:hover {
+                background: none;
+                color: #000;
+                border: 3px solid #000;
+                transition: 0.5s;
+            }
+        }
+    }
+}
