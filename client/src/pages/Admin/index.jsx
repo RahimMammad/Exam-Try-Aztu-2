@@ -11,10 +11,13 @@ const Admin = () => {
     const url = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/
 
     const handleDeleteProduct = async (productId) => {
-        setTimeout(async () => {
-            await axios.delete(`http://localhost:7000/${productId}`)
-        }, 400)
-    }
+        try {
+            await axios.delete(`http://localhost:7000/${productId}`);
+            setData((prevData) => prevData.filter(product => product._id !== productId));
+        } catch (error) {
+            console.error('Error deleting product:', error);
+        }
+    };
 
   return (
     <div>
@@ -24,20 +27,23 @@ const Admin = () => {
         <Formik
         initialValues={{ name: '', price: '', image: '' }}
         validationSchema={Yup.object({
-            name: Yup.string()
-            .required('Required'),
-            price: Yup.number()
-            .min(1)
-            .required('Required'),
+            name: Yup.string().required('Required'),
+            price: Yup.number().min(1).required('Required'),
             image: Yup.string().matches(url).required('Required'),
         })}
-        onSubmit={async (values, { setSubmitting, resetForm }) => {
+        onSubmit={(values, { resetForm, setSubmitting }) => {
             setTimeout(async () => {
-                await axios.post("http://localhost:7000", values)
-                resetForm()
-                setSubmitting(false)
+              try {
+                await axios.post("http://localhost:7000", values);
+                setData([...data, values]);
+                resetForm();
+              } catch (error) {
+                console.log(error);
+              } finally {
+                setSubmitting(false);
+              }
             }, 400);
-        }}
+          }}
         >
         <Form>
             <Field name="name" type="text" placeholder="Name" />
@@ -68,7 +74,7 @@ const Admin = () => {
                             <td className='image'><img src={item.image} alt="" /></td>
                             <td><p>{item.name}</p></td>
                             <td><span>${item.price}</span></td>
-                            <td><button onClick={() =>handleDeleteProduct(item._id)}>Delete</button></td>
+                            <td><button id="delete" onClick={() =>handleDeleteProduct(item._id)}>Delete</button></td>
                         </tr>
                     ))
                 }

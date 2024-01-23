@@ -8,24 +8,26 @@ const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
     const {cart} = useContext(CartContext)
     const {favs} = useContext(WishlistContext)
-    // const [isSticky, setisSticky] = useState(false)
+    const [isSticky, setisSticky] = useState(false)
 
     const handleClickMenu = () => {
         setIsOpen(!isOpen)
     }
-    // const handleScroll = () => {
-    //     const scrollPosition = window.scrollY
-    //     setisSticky(scrollPosition > 50)
-    // }
-    // useEffect(() => {
-    //     window.addEventListener(("scroll", handleScroll))
-    //     return (() => {
-    //         window.removeEventListener(('scroll', handleScroll))
-    //     })
-    // }, [])
+    const handleScroll = () => {
+        const scrollPosition = window.scrollY;
+        setisSticky(scrollPosition > 50);
+      };
+    
+      useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+    
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, []);
   return (
     <>
-        <nav id='navbar'>
+        <nav className={`navbar ${isSticky ? "active" : ""}`}>
             <div className='navbar-main-container'>
                 <img src="https://preview.colorlib.com/theme/timezone/assets/img/logo/logo.png" alt="" />
                 <ul>
