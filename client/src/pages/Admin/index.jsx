@@ -7,13 +7,13 @@ import { Helmet } from 'react-helmet-async';
 import UseFetchData from '../../hooks/UseFetchData';
 
 const Admin = () => {
-    const {data, setData} = UseFetchData()
+    const {data, setData, refetch} = UseFetchData()
     const url = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/
 
     const handleDeleteProduct = async (productId) => {
         try {
             await axios.delete(`http://localhost:7000/${productId}`);
-            setData((prevData) => prevData.filter(product => product._id !== productId));
+            refetch()
         } catch (error) {
             console.error('Error deleting product:', error);
         }
@@ -35,7 +35,6 @@ const Admin = () => {
             setTimeout(async () => {
               try {
                 await axios.post("http://localhost:7000", values);
-                setData([...data, values]);
                 resetForm();
               } catch (error) {
                 console.log(error);
